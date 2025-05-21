@@ -13,7 +13,7 @@ const TopBar = styled.div`
 
 const TopBarContent = styled(Container)`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   gap: 20px;
 `;
@@ -56,12 +56,19 @@ const Logo = styled.a`
   font-family: ${({ theme }) => theme.fonts.heading};
   color: ${({ theme }) => theme.colors.text.light};
   text-decoration: none;
-  
+  display: flex;
+  align-items: center;
   &:hover {
     color: ${({ theme }) => theme.colors.text.light};
   }
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    display: none;
+  img {
+    max-width: 220px;
+    width: auto;
+    height: 48px;
+    @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+      max-width: 160px;
+      height: 40px;
+    }
   }
 `;
 
@@ -143,6 +150,37 @@ const CloseButton = styled.button`
   cursor: pointer;
 `;
 
+const SocialIcons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+const RequestQuoteButton = styled.a`
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 24px;
+  background: #b77a3a;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: background 0.2s;
+  text-align: center;
+
+  &:hover {
+    background: #8f4f2d;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1rem;
+  }
+`;
+
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
@@ -154,51 +192,57 @@ const Header: React.FC = () => {
     <>
       <TopBar>
         <TopBarContent>
-          <ContactLink href="tel:+15137617775">
-            <span>+513 761 7775</span>
-          </ContactLink>
-          <ContactLink href="mailto:sales@monti-inc.com">
-            <span>SALES@MONTI-INC.COM</span>
-          </ContactLink>
+          <SocialIcons>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style={{color: 'white', fontSize: 20}}>
+              {/* LinkedIn Emoji or SVG */}
+              <span role="img" aria-label="LinkedIn">🔗</span>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{color: 'white', fontSize: 20}}>
+              {/* Facebook Emoji or SVG */}
+              <span role="img" aria-label="Facebook">📘</span>
+            </a>
+          </SocialIcons>
+          <div style={{display: 'flex', gap: '20px', alignItems: 'center'}}>
+            <ContactLink href="tel:+15137617775">
+              <span>+513 761 7775</span>
+            </ContactLink>
+            <ContactLink href="mailto:sales@monti-inc.com">
+              <span>SALES@MONTI-INC.COM</span>
+            </ContactLink>
+          </div>
         </TopBarContent>
       </TopBar>
       <StyledHeader>
         <HeaderContainer>
-          <Logo href="/">MONTI</Logo>
-          
-          <Nav>
-            <NavLink href="/">HOME</NavLink>
-            <NavLink href="/about">ABOUT US</NavLink>
-            <NavLink href="/services">SERVICES</NavLink>
-            <NavLink href="/projects">INDUSTRIES SERVED</NavLink>
-            <NavLink href="/blog">BLOG</NavLink>
-            <NavLink href="/contact">CONTACT</NavLink>
-            <Button variant="outline" size="sm">
-              REQUEST A QUOTE
-            </Button>
-          </Nav>
-          
-          <MobileMenuButton onClick={toggleMobileMenu}>
-            ☰
-          </MobileMenuButton>
+          <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0}}>
+            <div style={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+              <Logo href="/">
+                <img src="/plating-logo.svg" alt="Plating Solutions LLC" height="48" style={{ maxWidth: '220px', width: 'auto' }} />
+              </Logo>
+              <Nav>
+                <NavLink href="/">HOME</NavLink>
+                <NavLink href="/services">SERVICES</NavLink>
+                <NavLink href="/contact">CONTACT</NavLink>
+              </Nav>
+              <MobileMenuButton onClick={toggleMobileMenu}>
+                ☰
+              </MobileMenuButton>
+            </div>
+
+          </div>
         </HeaderContainer>
       
       <MobileMenu isOpen={isMobileMenuOpen}>
         <MobileMenuHeader>
-          <Logo href="/">MONTI</Logo>
+          <Logo href="/">
+            <img src="/plating-logo.svg" alt="Plating Solutions LLC" height="48" style={{ maxWidth: '220px', width: 'auto' }} />
+          </Logo>
           <CloseButton onClick={toggleMobileMenu}>✕</CloseButton>
         </MobileMenuHeader>
-        
         <MobileNavLink href="/">HOME</MobileNavLink>
-        <MobileNavLink href="/about">ABOUT US</MobileNavLink>
         <MobileNavLink href="/services">SERVICES</MobileNavLink>
-        <MobileNavLink href="/projects">INDUSTRIES SERVED</MobileNavLink>
-        <MobileNavLink href="/blog">BLOG</MobileNavLink>
         <MobileNavLink href="/contact">CONTACT</MobileNavLink>
-        
-        <Button variant="outline" fullWidth style={{ marginTop: '2rem' }}>
-          REQUEST A QUOTE
-        </Button>
+        <RequestQuoteButton href="/contact" style={{marginTop: 32}}>REQUEST A QUOTE</RequestQuoteButton>
       </MobileMenu>
     </StyledHeader>
     </>

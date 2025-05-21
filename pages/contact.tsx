@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Header from './components/Header';
 import Container from './components/Container';
-import Button from './components/Button';
+import Link from 'next/link';
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -257,6 +257,39 @@ const ClockIcon = () => (
   </svg>
 );
 
+// Minimal CSS for navigation buttons
+const buttonStyles = `
+.button.primary {
+  background-color: #aa5f37;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-right: 1rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.button.primary:hover {
+  background-color: #8f4f2d;
+}
+.button.secondary {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.button.secondary:hover {
+  background-color: #000;
+}
+`;
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -284,7 +317,9 @@ export default function Contact() {
   };
   
   return (
-    <PageWrapper>
+    <>
+      <style>{buttonStyles}</style>
+      <PageWrapper>
       <Header />
       
       <HeroSection>
@@ -393,7 +428,7 @@ export default function Contact() {
                 />
               </FormGroup>
               
-              <Button type="submit" size="lg">Send Message</Button>
+              <button type="submit" className="button primary" style={{marginTop: '1rem'}}>Send Message</button>
             </ContactForm>
             
             <ContactInfo>
@@ -451,39 +486,18 @@ export default function Contact() {
         <Container>
           <FooterContent>
             <FooterColumn>
-              <FooterTitle>Company</FooterTitle>
-              <FooterLink href="/about">About Us</FooterLink>
-              <FooterLink href="/team">Our Team</FooterLink>
-              <FooterLink href="/careers">Careers</FooterLink>
-              <FooterLink href="/news">News</FooterLink>
-            </FooterColumn>
-            <FooterColumn>
-              <FooterTitle>Services</FooterTitle>
-              <FooterLink href="/services/cnc-machining">CNC Machining</FooterLink>
-              <FooterLink href="/services/sheet-metal">Sheet Metal</FooterLink>
-              <FooterLink href="/services/welding">Welding</FooterLink>
-              <FooterLink href="/services/prototyping">Prototyping</FooterLink>
-            </FooterColumn>
-            <FooterColumn>
-              <FooterTitle>Resources</FooterTitle>
-              <FooterLink href="/blog">Blog</FooterLink>
-              <FooterLink href="/case-studies">Case Studies</FooterLink>
-              <FooterLink href="/faq">FAQ</FooterLink>
-              <FooterLink href="/support">Support</FooterLink>
-            </FooterColumn>
-            <FooterColumn>
-              <FooterTitle>Contact</FooterTitle>
-              <FooterLink href="/contact">Contact Us</FooterLink>
-              <FooterLink href="/quote">Request a Quote</FooterLink>
-              <FooterLink href="tel:+1234567890">123-456-7890</FooterLink>
-              <FooterLink href="mailto:info@yourcompany.com">info@yourcompany.com</FooterLink>
+              <FooterTitle>Navigation</FooterTitle>
+              <FooterLink href="/">Home</FooterLink>
+              <FooterLink href="/services">Services</FooterLink>
+              <FooterLink href="/contact">Contact</FooterLink>
             </FooterColumn>
           </FooterContent>
           <Copyright>
-            © {new Date().getFullYear()} Your Company. All rights reserved.
+            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
           </Copyright>
         </Container>
       </Footer>
     </PageWrapper>
+    </>
   );
 }

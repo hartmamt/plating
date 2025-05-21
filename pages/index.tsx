@@ -1,13 +1,106 @@
 import React from 'react';
+import Link from 'next/link';
+
 import styled from 'styled-components';
 import Header from './components/Header';
 import Container from './components/Container';
 import Button from './components/Button';
 
 const HeroSection = styled.section`
+  position: relative;
   background-color: ${({ theme }) => theme.colors.tertiary};
   padding: ${({ theme }) => theme.spacing['3xl']} 0;
   text-align: center;
+  min-height: 480px;
+  overflow: hidden;
+`;
+
+const VideoBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  min-height: 480px;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45); /* adjust for desired dimming */
+    z-index: 2;
+    pointer-events: none;
+  }
+`;
+
+const ResponsiveIframe = styled.iframe`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 aspect ratio */
+  min-width: 100vw;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  border: none;
+  pointer-events: auto;
+  @media (max-width: 900px) {
+    height: 60vw;
+  }
+  @media (max-width: 600px) {
+    height: 80vw;
+  }
+`;
+
+
+const HeroContent = styled.div`
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+`;
+
+const HeroHeadline = styled.h1`
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  letter-spacing: 0.02em;
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+  }
+`;
+
+const MobileHeroButton = styled.a`
+  display: none;
+  @media (max-width: 600px) {
+    display: block;
+    width: 90vw;
+    max-width: 360px;
+    margin: 0 auto 1.5rem auto;
+    background-color: #b77a3a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 1.1rem 0;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
 `;
 
 const HeroTitle = styled.h1`
@@ -143,114 +236,161 @@ const Copyright = styled.div`
   opacity: 0.6;
 `;
 
+// Minimal CSS for navigation buttons
+const buttonStyles = `
+.button.primary {
+  background-color: #aa5f37;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-right: 1rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.button.primary:hover {
+  background-color: #8f4f2d;
+}
+.button.secondary {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.button.secondary:hover {
+  background-color: #000;
+}
+`;
+
+// Floating chat/info bubble
+const ChatBubble = styled.div`
+  position: fixed;
+  right: 16px;
+  bottom: 24px;
+  z-index: 9999;
+  background: #fff;
+  color: #222;
+  border-radius: 32px 32px 32px 8px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.14);
+  padding: 24px 20px 24px 24px;
+  min-width: 280px;
+  max-width: 350px;
+  font-size: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border: 2px solid #b77a3a;
+  @media (max-width: 600px) {
+    min-width: 0;
+    max-width: 94vw;
+    right: 2vw;
+    bottom: 16px;
+    padding: 16px 10px 16px 16px;
+    font-size: 0.97rem;
+  }
+`;
+
+const ChatBubbleLogo = styled.span`
+  font-size: 2rem;
+  margin-right: 8px;
+  color: #b77a3a;
+`;
+
+const ChatBubbleClose = styled.button`
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #888;
+  cursor: pointer;
+  position: absolute;
+  top: 12px;
+  right: 16px;
+`;
+
+function EmploymentChatBubble() {
+  const [open, setOpen] = React.useState(true);
+  if (!open) return null;
+  return (
+    <ChatBubble>
+      <ChatBubbleLogo>Ⓜ️</ChatBubbleLogo>
+      <div style={{flex: 1}}>
+        Hello, thank you for visiting. If you are looking for employment opportunities, please apply here: <a href="https://monti-inc.com/jobs/employment-application" target="_blank" rel="noopener noreferrer" style={{color:'#0056d6', textDecoration:'underline'}}>https://monti-inc.com/jobs/employment-application</a>
+      </div>
+      <ChatBubbleClose aria-label="Close" onClick={()=>setOpen(false)}>&#10006;</ChatBubbleClose>
+    </ChatBubble>
+  );
+}
+
 export default function Home() {
   return (
     <>
       <Header />
-      
+
       <main>
         <HeroSection>
-          <Container>
-            <HeroTitle>Your Partner in Precision Manufacturing</HeroTitle>
-            <HeroSubtitle>
-              We deliver high-quality machining and fabrication solutions for industries that demand excellence.
-            </HeroSubtitle>
-            <ButtonGroup>
-              <Button size="lg">Get a Quote</Button>
-              <Button size="lg" variant="outlineDark">Learn More</Button>
-            </ButtonGroup>
-          </Container>
+          <VideoBackground>
+            <ResponsiveIframe
+              src="https://player.vimeo.com/video/255036745?autoplay=1&loop=1&automute=0"
+              title="Electroplating Vimeo Video"
+              frameBorder="0"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+              style={{ position: 'relative', zIndex: 1 }}
+            />
+          </VideoBackground>
+          <HeroContent>
+            <Container>
+              <HeroHeadline>Your Partner in Precision Electroplating & Surface Finishing</HeroHeadline>
+              <MobileHeroButton href="/contact">GET A QUOTE TODAY!</MobileHeroButton>
+            </Container>
+          </HeroContent>
         </HeroSection>
-        
         <FeaturesSection>
-          <Container>
-            <SectionTitle>Our Services</SectionTitle>
-            <FeatureGrid>
-              <FeatureCard>
-                <FeatureTitle>CNC Machining</FeatureTitle>
-                <FeatureDescription>
-                  Precision CNC machining services with tight tolerances and exceptional quality.
-                </FeatureDescription>
-              </FeatureCard>
-              <FeatureCard>
-                <FeatureTitle>Sheet Metal Fabrication</FeatureTitle>
-                <FeatureDescription>
-                  Custom sheet metal fabrication for your most demanding applications.
-                </FeatureDescription>
-              </FeatureCard>
-              <FeatureCard>
-                <FeatureTitle>Welding & Assembly</FeatureTitle>
-                <FeatureDescription>
-                  Expert welding and assembly services to complete your manufacturing needs.
-                </FeatureDescription>
-              </FeatureCard>
-              <FeatureCard>
-                <FeatureTitle>Prototyping</FeatureTitle>
-                <FeatureDescription>
-                  Rapid prototyping to bring your concepts to life quickly and efficiently.
-                </FeatureDescription>
-              </FeatureCard>
-              <FeatureCard>
-                <FeatureTitle>Quality Inspection</FeatureTitle>
-                <FeatureDescription>
-                  Comprehensive quality control to ensure your parts meet specifications.
-                </FeatureDescription>
-              </FeatureCard>
-              <FeatureCard>
-                <FeatureTitle>Design Support</FeatureTitle>
-                <FeatureDescription>
-                  Engineering and design support to optimize your products for manufacturing.
-                </FeatureDescription>
-              </FeatureCard>
-            </FeatureGrid>
-          </Container>
-        </FeaturesSection>
-        
-        <CTASection>
-          <Container>
-            <CTATitle>Ready to Discuss Your Project?</CTATitle>
-            <CTADescription>
-              Contact us today to discuss how we can help bring your manufacturing project to life.
-            </CTADescription>
-            <Button size="lg" variant="secondary">Contact Us Now</Button>
-          </Container>
-        </CTASection>
+  <Container>
+    <SectionTitle>About Us</SectionTitle>
+    <FeatureGrid>
+      <FeatureCard>
+        <FeatureTitle>Comprehensive Electroplating</FeatureTitle>
+        <FeatureDescription>
+          We specialize in high-quality electroplating services tailored to modern manufacturing. Our offerings include silver, tin, and zinc electroplating, plus specialized surface treatments for enhanced performance, conductivity, corrosion resistance, and durability.
+        </FeatureDescription>
+      </FeatureCard>
+      <FeatureCard>
+        <FeatureTitle>Industry-Spanning Expertise</FeatureTitle>
+        <FeatureDescription>
+          Serving industries from aerospace to electronics, our team brings decades of experience. We deliver both high-volume production and custom plating solutions—always with precision, reliability, and a focus on customer satisfaction.
+        </FeatureDescription>
+      </FeatureCard>
+      <FeatureCard>
+        <FeatureTitle>Quality & Commitment</FeatureTitle>
+        <FeatureDescription>
+          Trust your components to the experts at Plating Solutions—where quality comes standard and every project is delivered on-spec, every time.
+        </FeatureDescription>
+      </FeatureCard>
+    </FeatureGrid>
+  </Container>
+</FeaturesSection>
       </main>
-      
+      <EmploymentChatBubble />
       <Footer>
         <Container>
           <FooterContent>
             <FooterColumn>
-              <FooterTitle>Company</FooterTitle>
-              <FooterLink href="/about">About Us</FooterLink>
-              <FooterLink href="/team">Our Team</FooterLink>
-              <FooterLink href="/careers">Careers</FooterLink>
-              <FooterLink href="/news">News</FooterLink>
-            </FooterColumn>
-            <FooterColumn>
-              <FooterTitle>Services</FooterTitle>
-              <FooterLink href="/services/cnc-machining">CNC Machining</FooterLink>
-              <FooterLink href="/services/sheet-metal">Sheet Metal</FooterLink>
-              <FooterLink href="/services/welding">Welding</FooterLink>
-              <FooterLink href="/services/prototyping">Prototyping</FooterLink>
-            </FooterColumn>
-            <FooterColumn>
-              <FooterTitle>Resources</FooterTitle>
-              <FooterLink href="/blog">Blog</FooterLink>
-              <FooterLink href="/case-studies">Case Studies</FooterLink>
-              <FooterLink href="/faq">FAQ</FooterLink>
-              <FooterLink href="/support">Support</FooterLink>
-            </FooterColumn>
-            <FooterColumn>
-              <FooterTitle>Contact</FooterTitle>
-              <FooterLink href="/contact">Contact Us</FooterLink>
-              <FooterLink href="/quote">Request a Quote</FooterLink>
-              <FooterLink href="tel:+1234567890">123-456-7890</FooterLink>
-              <FooterLink href="mailto:info@yourcompany.com">info@yourcompany.com</FooterLink>
+              <FooterTitle>Navigation</FooterTitle>
+              <FooterLink href="/">Home</FooterLink>
+              <FooterLink href="/services">Services</FooterLink>
+              <FooterLink href="/contact">Contact</FooterLink>
             </FooterColumn>
           </FooterContent>
           <Copyright>
-            © {new Date().getFullYear()} Your Company. All rights reserved.
+            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
           </Copyright>
         </Container>
       </Footer>

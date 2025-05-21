@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from './components/Header';
 import Container from './components/Container';
-import Button from './components/Button';
+import Link from 'next/link';
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -270,16 +270,53 @@ const Copyright = styled.div`
   opacity: 0.6;
 `;
 
+// Minimal CSS for navigation buttons
+const buttonStyles = `
+.button.primary {
+  background-color: #aa5f37;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-right: 1rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.button.primary:hover {
+  background-color: #8f4f2d;
+}
+.button.secondary {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.button.secondary:hover {
+  background-color: #000;
+}
+`;
+
 export default function Services() {
+  // Only show electroplating and special processes services
+
   return (
-    <PageWrapper>
+    <>
+      <style>{buttonStyles}</style>
+      <PageWrapper>
       <Header />
       
       <HeroSection>
         <Container>
           <PageTitle>Our Services</PageTitle>
           <PageSubtitle>
-            We offer a comprehensive range of precision manufacturing services to meet your needs
+            We specialize in high-quality electroplating and metal finishing. Our primary services include:
           </PageSubtitle>
         </Container>
       </HeroSection>
@@ -288,86 +325,35 @@ export default function Services() {
         <Container>
           <ServicesList>
             <ServiceCard>
-              <ServiceImage>
-                <img src="https://images.unsplash.com/photo-1565437957398-7d4c9481c9c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="CNC Machining" />
-              </ServiceImage>
               <ServiceContent>
-                <ServiceTitle>CNC Machining</ServiceTitle>
+                <ServiceTitle>Silver Electroplating</ServiceTitle>
                 <ServiceDescription>
-                  Our state-of-the-art CNC machining capabilities deliver precision parts with tight tolerances for a wide range of applications.
+                  High-purity silver plating for electrical, industrial, and decorative applications. Offers excellent conductivity and corrosion resistance.
                 </ServiceDescription>
-                <ServiceFeatures>
-                  <li>3-axis and 5-axis machining</li>
-                  <li>Precision tolerances to ±0.0005"</li>
-                  <li>Variety of materials including aluminum, steel, and plastics</li>
-                  <li>Prototype to production quantities</li>
-                </ServiceFeatures>
-                <ButtonWrapper>
-                  <Button variant="outline">Learn More</Button>
-                </ButtonWrapper>
               </ServiceContent>
             </ServiceCard>
-            
             <ServiceCard>
-              <ServiceImage>
-                <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Sheet Metal Fabrication" />
-              </ServiceImage>
               <ServiceContent>
-                <ServiceTitle>Sheet Metal Fabrication</ServiceTitle>
+                <ServiceTitle>Tin Electroplating</ServiceTitle>
                 <ServiceDescription>
-                  Our sheet metal fabrication services include cutting, bending, and forming to create custom components for your specific needs.
+                  Tin plating for electronics, connectors, and components requiring solderability and protection from oxidation.
                 </ServiceDescription>
-                <ServiceFeatures>
-                  <li>Laser cutting and punching</li>
-                  <li>Press brake forming</li>
-                  <li>Custom enclosures and brackets</li>
-                  <li>Material thicknesses from 0.020" to 0.25"</li>
-                </ServiceFeatures>
-                <ButtonWrapper>
-                  <Button variant="outline">Learn More</Button>
-                </ButtonWrapper>
               </ServiceContent>
             </ServiceCard>
-            
             <ServiceCard>
-              <ServiceImage>
-                <img src="https://images.unsplash.com/photo-1605001011156-cbf0b0f67a51?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Welding & Assembly" />
-              </ServiceImage>
               <ServiceContent>
-                <ServiceTitle>Welding & Assembly</ServiceTitle>
+                <ServiceTitle>Zinc Electroplating</ServiceTitle>
                 <ServiceDescription>
-                  Our skilled welders and assembly technicians ensure that your components are properly joined and assembled to meet your specifications.
+                  Durable zinc coatings for corrosion protection on fasteners, hardware, and industrial parts.
                 </ServiceDescription>
-                <ServiceFeatures>
-                  <li>TIG, MIG, and spot welding</li>
-                  <li>Precision assembly services</li>
-                  <li>Quality inspection and testing</li>
-                  <li>Full documentation and traceability</li>
-                </ServiceFeatures>
-                <ButtonWrapper>
-                  <Button variant="outline">Learn More</Button>
-                </ButtonWrapper>
               </ServiceContent>
             </ServiceCard>
-            
             <ServiceCard>
-              <ServiceImage>
-                <img src="https://images.unsplash.com/photo-1581092921461-39b9884bcd13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Prototyping" />
-              </ServiceImage>
               <ServiceContent>
-                <ServiceTitle>Prototyping</ServiceTitle>
+                <ServiceTitle>Special Processes</ServiceTitle>
                 <ServiceDescription>
-                  Our rapid prototyping services help you quickly iterate and refine your designs before moving to full production.
+                  We offer a variety of specialty finishes and custom processes. Please contact us for details about additional capabilities.
                 </ServiceDescription>
-                <ServiceFeatures>
-                  <li>Quick turnaround times</li>
-                  <li>Design for manufacturability feedback</li>
-                  <li>Material selection guidance</li>
-                  <li>Seamless transition to production</li>
-                </ServiceFeatures>
-                <ButtonWrapper>
-                  <Button variant="outline">Learn More</Button>
-                </ButtonWrapper>
               </ServiceContent>
             </ServiceCard>
           </ServicesList>
@@ -388,7 +374,7 @@ export default function Services() {
               <SectionText>
                 Our copper machining services include CNC milling, turning, drilling, and tapping, as well as custom fabrication and assembly.
               </SectionText>
-              <Button style={{ marginTop: '1rem' }}>Learn About Our Copper Capabilities</Button>
+              <a className="button primary" style={{ marginTop: '1rem' }} href="#">Learn About Our Copper Capabilities</a>
             </FeaturedServiceContent>
             <FeaturedServiceImage>
               <img src="https://images.unsplash.com/photo-1584285418504-090883a73e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Copper Machining" />
@@ -442,7 +428,9 @@ export default function Services() {
           <CTAText>
             Contact us today to discuss your manufacturing needs and get a quote for your project.
           </CTAText>
-          <Button size="lg" variant="secondary">Request a Quote</Button>
+          <Link href="/contact" passHref legacyBehavior>
+  <a className="button secondary">Request a Quote</a>
+</Link>
         </Container>
       </CTASection>
       
@@ -450,39 +438,18 @@ export default function Services() {
         <Container>
           <FooterContent>
             <FooterColumn>
-              <FooterTitle>Company</FooterTitle>
-              <FooterLink href="/about">About Us</FooterLink>
-              <FooterLink href="/team">Our Team</FooterLink>
-              <FooterLink href="/careers">Careers</FooterLink>
-              <FooterLink href="/news">News</FooterLink>
-            </FooterColumn>
-            <FooterColumn>
-              <FooterTitle>Services</FooterTitle>
-              <FooterLink href="/services/cnc-machining">CNC Machining</FooterLink>
-              <FooterLink href="/services/sheet-metal">Sheet Metal</FooterLink>
-              <FooterLink href="/services/welding">Welding</FooterLink>
-              <FooterLink href="/services/prototyping">Prototyping</FooterLink>
-            </FooterColumn>
-            <FooterColumn>
-              <FooterTitle>Resources</FooterTitle>
-              <FooterLink href="/blog">Blog</FooterLink>
-              <FooterLink href="/case-studies">Case Studies</FooterLink>
-              <FooterLink href="/faq">FAQ</FooterLink>
-              <FooterLink href="/support">Support</FooterLink>
-            </FooterColumn>
-            <FooterColumn>
-              <FooterTitle>Contact</FooterTitle>
-              <FooterLink href="/contact">Contact Us</FooterLink>
-              <FooterLink href="/quote">Request a Quote</FooterLink>
-              <FooterLink href="tel:+1234567890">123-456-7890</FooterLink>
-              <FooterLink href="mailto:info@yourcompany.com">info@yourcompany.com</FooterLink>
+              <FooterTitle>Navigation</FooterTitle>
+              <FooterLink href="/">Home</FooterLink>
+              <FooterLink href="/services">Services</FooterLink>
+              <FooterLink href="/contact">Contact</FooterLink>
             </FooterColumn>
           </FooterContent>
           <Copyright>
-            © {new Date().getFullYear()} Your Company. All rights reserved.
+            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
           </Copyright>
         </Container>
       </Footer>
     </PageWrapper>
+    </>
   );
 }

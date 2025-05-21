@@ -360,7 +360,7 @@ export default function About() {
           <FooterContent>
             <FooterColumn>
               <FooterTitle>Company</FooterTitle>
-              <FooterLink href="/about">About Us</FooterLink>
+              
               <FooterLink href="/team">Our Team</FooterLink>
               <FooterLink href="/careers">Careers</FooterLink>
               <FooterLink href="/news">News</FooterLink>
