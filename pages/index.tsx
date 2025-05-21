@@ -32,7 +32,7 @@ const VideoBackground = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.45); /* adjust for desired dimming */
+    background: rgba(0,0,0,0.45);
     z-index: 2;
     pointer-events: none;
   }
@@ -40,21 +40,16 @@ const VideoBackground = styled.div`
 
 const ResponsiveIframe = styled.iframe`
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  left: 0;
   width: 100vw;
-  height: 56.25vw; /* 16:9 aspect ratio */
+  height: 100%;
   min-width: 100vw;
   min-height: 100%;
-  transform: translate(-50%, -50%);
   border: none;
   pointer-events: auto;
-  @media (max-width: 900px) {
-    height: 60vw;
-  }
-  @media (max-width: 600px) {
-    height: 80vw;
-  }
+  object-fit: cover;
+  z-index: 1;
 `;
 
 
