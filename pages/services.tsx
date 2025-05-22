@@ -304,152 +304,232 @@ const buttonStyles = `
 `;
 
 export default function Services() {
-  // Only show electroplating and special processes services
-
   return (
     <>
       <style>{buttonStyles}</style>
       <PageWrapper>
-      <Header />
-      
-      <HeroSection>
-        <Container>
-          <PageTitle>Our Services</PageTitle>
-          <PageSubtitle>
-            We specialize in high-quality electroplating and metal finishing. Our primary services include:
-          </PageSubtitle>
-        </Container>
-      </HeroSection>
-      
-      <ServicesSection>
-        <Container>
-          <ServicesList>
-            <ServiceCard>
-              <ServiceContent>
-                <ServiceTitle>Silver Electroplating</ServiceTitle>
-                <ServiceDescription>
-                  High-purity silver plating for electrical, industrial, and decorative applications. Offers excellent conductivity and corrosion resistance.
-                </ServiceDescription>
-              </ServiceContent>
-            </ServiceCard>
-            <ServiceCard>
-              <ServiceContent>
-                <ServiceTitle>Tin Electroplating</ServiceTitle>
-                <ServiceDescription>
-                  Tin plating for electronics, connectors, and components requiring solderability and protection from oxidation.
-                </ServiceDescription>
-              </ServiceContent>
-            </ServiceCard>
-            <ServiceCard>
-              <ServiceContent>
-                <ServiceTitle>Zinc Electroplating</ServiceTitle>
-                <ServiceDescription>
-                  Durable zinc coatings for corrosion protection on fasteners, hardware, and industrial parts.
-                </ServiceDescription>
-              </ServiceContent>
-            </ServiceCard>
-            <ServiceCard>
-              <ServiceContent>
-                <ServiceTitle>Special Processes</ServiceTitle>
-                <ServiceDescription>
-                  We offer a variety of specialty finishes and custom processes. Please contact us for details about additional capabilities.
-                </ServiceDescription>
-              </ServiceContent>
-            </ServiceCard>
-          </ServicesList>
-        </Container>
-      </ServicesSection>
-      
-      <FeaturedServiceSection>
-        <Container>
-          <FeaturedServiceGrid>
-            <FeaturedServiceContent>
-              <SectionTitle>Precision Copper Machining</SectionTitle>
-              <SectionText>
-                We specialize in precision copper machining for electrical and thermal applications. Our expertise in working with copper allows us to create components with excellent conductivity and thermal properties.
-              </SectionText>
-              <SectionText>
-                From simple bus bars to complex heat sinks and electrical components, we have the capabilities to meet your copper machining needs with precision and quality.
-              </SectionText>
-              <SectionText>
-                Our copper machining services include CNC milling, turning, drilling, and tapping, as well as custom fabrication and assembly.
-              </SectionText>
-              <a className="button primary" style={{ marginTop: '1rem' }} href="#">Learn About Our Copper Capabilities</a>
-            </FeaturedServiceContent>
-            <FeaturedServiceImage>
-              <img src="https://images.unsplash.com/photo-1584285418504-090883a73e68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Copper Machining" />
-            </FeaturedServiceImage>
-          </FeaturedServiceGrid>
-        </Container>
-      </FeaturedServiceSection>
-      
-      <ProcessSection>
-        <Container>
-          <SectionTitle style={{ textAlign: 'center', marginBottom: '2rem' }}>Our Process</SectionTitle>
-          <ProcessSteps>
-            <ProcessStep>
-              <StepNumber>1</StepNumber>
-              <StepTitle>Consultation</StepTitle>
-              <StepDescription>
-                We begin with a thorough consultation to understand your project requirements, specifications, and timeline.
-              </StepDescription>
-            </ProcessStep>
-            
-            <ProcessStep>
-              <StepNumber>2</StepNumber>
-              <StepTitle>Design & Engineering</StepTitle>
-              <StepDescription>
-                Our engineering team reviews your designs and provides feedback for manufacturability and cost optimization.
-              </StepDescription>
-            </ProcessStep>
-            
-            <ProcessStep>
-              <StepNumber>3</StepNumber>
-              <StepTitle>Production</StepTitle>
-              <StepDescription>
-                We manufacture your components using our state-of-the-art equipment and skilled technicians.
-              </StepDescription>
-            </ProcessStep>
-            
-            <ProcessStep>
-              <StepNumber>4</StepNumber>
-              <StepTitle>Quality & Delivery</StepTitle>
-              <StepDescription>
-                Every part undergoes rigorous quality inspection before being carefully packaged and delivered to you.
-              </StepDescription>
-            </ProcessStep>
-          </ProcessSteps>
-        </Container>
-      </ProcessSection>
-      
-      <CTASection>
-        <Container>
-          <CTATitle>Ready to Start Your Next Project?</CTATitle>
-          <CTAText>
-            Contact us today to discuss your manufacturing needs and get a quote for your project.
-          </CTAText>
-          <Link href="/contact" passHref legacyBehavior>
-  <a className="button secondary">Request a Quote</a>
-</Link>
-        </Container>
-      </CTASection>
-      
-      <Footer>
-        <Container>
-          <FooterContent>
-            <FooterColumn>
-              <FooterTitle>Navigation</FooterTitle>
-              <FooterLink href="/">Home</FooterLink>
-              <FooterLink href="/services">Services</FooterLink>
-              <FooterLink href="/contact">Contact</FooterLink>
-            </FooterColumn>
-          </FooterContent>
-          <Copyright>
-            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
-          </Copyright>
-        </Container>
-      </Footer>
-    </PageWrapper>
+        <Header />
+        
+        <HeroSection>
+          <Container>
+            <PageTitle>Our Services</PageTitle>
+            <PageSubtitle>
+              We offer a wide range of electroplating and surface finishing services to meet your manufacturing needs.
+            </PageSubtitle>
+          </Container>
+        </HeroSection>
+        
+        <ServicesSection>
+          <Container>
+            <SectionTitle style={{ marginBottom: '2rem' }}>Core Services</SectionTitle>
+            <ServicesList>
+              <ServiceCard id="silver">
+                <ServiceImage>
+                  <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="Silver Electroplating" />
+                </ServiceImage>
+                <ServiceContent>
+                  <ServiceTitle>Silver Electroplating</ServiceTitle>
+                  <ServiceDescription>
+                    Silver electroplating is a specialized process where a thin layer of silver is deposited
+                    onto the surface of a metal component through an electrochemical reaction. At Plating
+                    Solutions, our silver plating services are engineered for high-performance applications
+                    where electrical conductivity, thermal performance, and corrosion resistance are
+                    critical.
+                  </ServiceDescription>
+                  <ServiceFeatures>
+                    <li><strong>Exceptional Conductivity</strong> - Silver is the most electrically conductive metal, making it ideal for electrical contacts, connectors, and components in high-reliability environments.</li>
+                    <li><strong>Thermal Efficiency</strong> - Excellent thermal conductivity allows silver-plated parts to dissipate heat quickly, improving performance and longevity.</li>
+                    <li><strong>Corrosion Resistance</strong> - Silver offers strong resistance to oxidation and corrosion, especially with proper underplating.</li>
+                    <li><strong>Solderability</strong> - Silver-plated surfaces provide superior solderability for electronics manufacturing.</li>
+                    <li><strong>Wear Resistance</strong> - With optional hard silver processes for better wear performance in contact applications.</li>
+                  </ServiceFeatures>
+
+                  <SectionText as="div" style={{ marginBottom: '1rem' }}>
+                    <strong>Common Applications:</strong>
+                    <ul style={{ marginTop: 8, marginBottom: 8, paddingLeft: 24 }}>
+                      <li>Electrical contacts and bus bars</li>
+                      <li>RF and microwave components</li>
+                      <li>Aerospace and defense connectors</li>
+                      <li>High-frequency electronics</li>
+                      <li>Medical devices</li>
+                    </ul>
+                  </SectionText>
+                  <SectionText>
+                    Our team ensures <strong>tight process control</strong>, <strong>thorough testing</strong>, and <strong>adherence to industry standards</strong> to meet even the most demanding specifications. Whether you're looking to enhance conductivity, reduce signal loss, or improve solderability, <strong>Plating Solutions</strong> delivers consistent, high-quality silver electroplating backed by technical expertise.
+                  </SectionText>
+
+                </ServiceContent>
+              </ServiceCard>
+              
+              <ServiceCard id="tin">
+                <ServiceImage>
+                  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Tin Electroplating" />
+                </ServiceImage>
+                <ServiceContent>
+                  <ServiceTitle>Tin Electroplating</ServiceTitle>
+                  <ServiceDescription>
+                    Tin electroplating is a widely used surface finishing process that deposits a layer of tin
+                    onto metal components for improved solderability, corrosion resistance, and surface
+                    protection. At Plating Solutions, we offer both bright and matte tin finishes tailored to
+                    your application's specific requirements.
+                  </ServiceDescription>
+                  <ServiceFeatures>
+                    <li><strong>Excellent Solderability</strong> - Tin is highly compatible with soldering processes, making it preferred for electrical components and circuit boards.</li>
+                    <li><strong>Corrosion Protection</strong> - Tin provides a protective barrier against environmental factors, preventing oxidation.</li>
+                    <li><strong>Non-Toxic and RoHS Compliant</strong> - Safe, lead-free coating that meets environmental standards for consumer electronics.</li>
+                    <li><strong>Ductility and Softness</strong> - Malleable nature makes it suitable for applications requiring forming or crimping without cracking.</li>
+                    <li><strong>Versatile Applications</strong> - Used in electrical terminals, PCB components, fasteners, and food processing equipment.</li>
+                  </ServiceFeatures>
+
+                  <SectionText as="div" style={{ marginBottom: '1rem' }}>
+                    <strong>Common Applications:</strong>
+                    <ul style={{ marginTop: 8, marginBottom: 8, paddingLeft: 24 }}>
+                      <li>Electrical terminals and contacts</li>
+                      <li>Printed circuit board components</li>
+                      <li>Fasteners and fittings</li>
+                      <li>Food processing equipment</li>
+                      <li>Automotive electrical systems</li>
+                    </ul>
+                  </SectionText>
+                  <SectionText>
+                    Our tin plating processes are carefully controlled to ensure <strong>uniform coverage</strong>, <strong>excellent adhesion</strong>, and compatibility with your manufacturing workflow—from prototype to high-volume production.
+                  </SectionText>
+
+                </ServiceContent>
+              </ServiceCard>
+              
+              <ServiceCard id="zinc">
+                <ServiceImage>
+                  <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" alt="Zinc Electroplating" />
+                </ServiceImage>
+                <ServiceContent>
+                  <ServiceTitle>Zinc Electroplating</ServiceTitle>
+                  <ServiceDescription>
+                    Zinc electroplating is a cost-effective method for providing robust corrosion
+                    protection to steel and iron components. At Plating Solutions, we offer both alkaline
+                    and acid zinc plating solutions, with a variety of chromate conversion coatings for added
+                    protection and appearance.
+                  </ServiceDescription>
+                  <ServiceFeatures>
+                    <li><strong>Superior Corrosion Resistance</strong> - Zinc serves as a sacrificial coating, corroding preferentially to protect the underlying metal.</li>
+                    <li><strong>Versatile Post-Treatment Options</strong> - Clear, yellow, black, and olive drab chromates for tailored aesthetics and enhanced protection.</li>
+                    <li><strong>Cost Efficiency</strong> - One of the most economical plating choices for corrosion protection in high-volume applications.</li>
+                    <li><strong>Improved Adhesion</strong> - Excellent base layer for powder coating and painting processes.</li>
+                    <li><strong>Common Applications</strong> - Used in automotive parts, industrial hardware, construction materials, and electrical enclosures.</li>
+                  </ServiceFeatures>
+
+                  <SectionText as="div" style={{ marginBottom: '1rem' }}>
+                    <strong>Common Applications:</strong>
+                    <ul style={{ marginTop: 8, marginBottom: 8, paddingLeft: 24 }}>
+                      <li>Automotive brackets and fasteners</li>
+                      <li>Industrial hardware</li>
+                      <li>Construction materials</li>
+                      <li>Agricultural equipment</li>
+                      <li>Electrical enclosures</li>
+                    </ul>
+                  </SectionText>
+                  <SectionText>
+                    Our zinc plating processes are optimized for <strong>durability</strong>, <strong>uniform thickness</strong>, and long-term corrosion resistance, ensuring your parts meet both performance and budget requirements.
+                  </SectionText>
+
+                </ServiceContent>
+              </ServiceCard>
+              
+
+            </ServicesList>
+          </Container>
+        </ServicesSection>
+        
+        <FeaturedServiceSection>
+          <Container>
+            <FeaturedServiceGrid>
+              <FeaturedServiceContent>
+                <SectionTitle>Industry-Leading Electroplating Expertise</SectionTitle>
+                <SectionText>
+                  At Plating Solutions, we bring decades of expertise to every project. Our team of specialists understand the critical requirements of modern manufacturing across aerospace, electronics, automotive, and medical industries.
+                </SectionText>
+                <SectionText>
+                  We deliver both high-volume production and custom plating solutions—always with precision, reliability, and a focus on customer satisfaction. Every project benefits from our technical expertise and commitment to quality.
+                </SectionText>
+                <SectionText>
+                  Our state-of-the-art facility features the latest equipment and rigorous process controls to ensure consistent results that meet or exceed industry standards. From prototype to production, we're your partner in precision electroplating.
+                </SectionText>
+                <a className="button primary" style={{ marginTop: '1rem' }} href="/contact">Contact Us</a>
+              </FeaturedServiceContent>
+              <FeaturedServiceImage>
+                <img src="https://images.unsplash.com/photo-1468421870903-4df1664ac249?auto=format&fit=crop&w=800&q=80" alt="Advanced Electroplating Facility" />
+              </FeaturedServiceImage>
+            </FeaturedServiceGrid>
+          </Container>
+        </FeaturedServiceSection>
+        
+        <ProcessSection>
+          <Container>
+            <SectionTitle style={{ textAlign: 'center', marginBottom: '2rem' }}>Our Process</SectionTitle>
+            <ProcessSteps>
+              <ProcessStep>
+                <StepNumber>1</StepNumber>
+                <StepTitle>Consultation</StepTitle>
+                <StepDescription>
+                  We begin with a thorough consultation to understand your project requirements, specifications, and timeline.
+                </StepDescription>
+              </ProcessStep>
+              
+              <ProcessStep>
+                <StepNumber>2</StepNumber>
+                <StepTitle>Design & Engineering</StepTitle>
+                <StepDescription>
+                  Our engineering team reviews your designs and provides feedback for manufacturability and cost optimization.
+                </StepDescription>
+              </ProcessStep>
+              
+              <ProcessStep>
+                <StepNumber>3</StepNumber>
+                <StepTitle>Production</StepTitle>
+                <StepDescription>
+                  We manufacture your components using our state-of-the-art equipment and skilled technicians.
+                </StepDescription>
+              </ProcessStep>
+              
+              <ProcessStep>
+                <StepNumber>4</StepNumber>
+                <StepTitle>Quality & Delivery</StepTitle>
+                <StepDescription>
+                  Every part undergoes rigorous quality inspection before being carefully packaged and delivered to you.
+                </StepDescription>
+              </ProcessStep>
+            </ProcessSteps>
+          </Container>
+        </ProcessSection>
+        
+        <CTASection>
+          <Container>
+            <CTATitle>Ready to Enhance Your Component Performance?</CTATitle>
+            <CTAText>
+              Contact us today to discuss your electroplating requirements and discover how our expert solutions can meet your needs.
+            </CTAText>
+            <Link href="/contact" className="button secondary">
+              Contact Us
+            </Link>
+          </Container>
+        </CTASection>
+        
+        <Footer>
+          <Container>
+            <FooterContent>
+              <FooterColumn>
+                <FooterTitle>Navigation</FooterTitle>
+                <FooterLink href="/">Home</FooterLink>
+                <FooterLink href="/services">Services</FooterLink>
+                <FooterLink href="/contact">Contact</FooterLink>
+              </FooterColumn>
+            </FooterContent>
+            <Copyright>
+              &copy; {new Date().getFullYear()} Plating Solutions. All rights reserved.
+            </Copyright>
+          </Container>
+        </Footer>
+      </PageWrapper>
     </>
   );
 }

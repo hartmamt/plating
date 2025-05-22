@@ -495,8 +495,8 @@ export default function Home() {
             Contact us today to discuss your project requirements and discover how our expert electroplating solutions can meet your needs.
           </CTADescription>
           <ButtonGroup>
-            <Link href="/contact" passHref legacyBehavior>
-              <Button as="a" variant="primary">Contact Us</Button>
+            <Link href="/contact" style={{ textDecoration: 'none' }}>
+              <Button variant="primary">Contact Us</Button>
             </Link>
           </ButtonGroup>
         </CTASection>
