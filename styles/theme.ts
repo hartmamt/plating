@@ -4,7 +4,7 @@ import { DefaultTheme } from 'styled-components';
 const theme: DefaultTheme = {
   colors: {
     // Primary brand colors
-    primary: '#AA5F37', // Brown color as specified
+    primary: '#B16034', // Monti brand copper
     secondary: '#333333', // Dark gray used for footer/secondary elements
     tertiary: '#F7F7F7', // Light gray background used for sections
     

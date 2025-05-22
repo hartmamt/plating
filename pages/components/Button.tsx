@@ -8,116 +8,88 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   fullWidth?: boolean;
+  as?: React.ElementType;
   children: React.ReactNode;
 }
 
-const ButtonStyles = styled.button<ButtonProps>`
-  font-family: ${({ theme }) => theme.fonts.button};
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  cursor: pointer;
-  transition: ${({ theme }) => theme.transitions.fast};
+const StyledButton = styled.button<Omit<ButtonProps, 'as'>>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  line-height: 1;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
   
-  /* Size Variants */
-  ${({ size, theme }) => {
+  ${({ fullWidth }) => fullWidth && 'width: 100%;'}
+  
+  ${({ size }) => {
     switch (size) {
       case 'sm':
-        return css`
-          font-size: ${theme.fontSizes.xs};
-          padding: ${theme.spacing.xs} ${theme.spacing.md};
-        `;
+        return 'padding: 0.5rem 1rem; font-size: 0.875rem;';
       case 'lg':
-        return css`
-          font-size: ${theme.fontSizes.md};
-          padding: ${theme.spacing.md} ${theme.spacing.xl};
-        `;
-      case 'md':
+        return 'padding: 0.75rem 1.5rem; font-size: 1.125rem;';
       default:
-        return css`
-          font-size: ${theme.fontSizes.sm};
-          padding: ${theme.spacing.sm} ${theme.spacing.lg};
-        `;
+        return '';
     }
   }}
   
-  /* Style Variants */
-  ${({ variant, theme }) => {
+  ${({ variant = 'primary', theme }) => {
+    const primaryColor = theme.colors?.primary || '#b77a3a';
+    const secondaryColor = theme.colors?.secondary || '#4a5568';
+    
     switch (variant) {
+      case 'primary':
+        return css`
+          background-color: ${primaryColor};
+          color: white;
+          &:hover { opacity: 0.9; }
+        `;
       case 'secondary':
         return css`
-          background-color: ${theme.colors.secondary};
-          color: ${theme.colors.text.light};
-          border: none;
-          
-          &:hover {
-            background-color: #333333;
-          }
-          
-          &:active {
-            background-color: #000000;
-          }
+          background-color: ${secondaryColor};
+          color: white;
+          &:hover { opacity: 0.9; }
         `;
       case 'outline':
         return css`
-          background-color: transparent;
-          color: ${theme.colors.text.light};
-          border: 3px solid ${theme.colors.text.light};
-          font-weight: ${theme.fontWeights.bold};
-          letter-spacing: 0.5px;
-          text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
-          
+          background: transparent;
+          border: 1px solid ${primaryColor};
+          color: ${primaryColor};
           &:hover {
-            background-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-          }
-          
-          &:active {
-            background-color: rgba(255, 255, 255, 0.35);
+            background-color: ${primaryColor}1a;
           }
         `;
       case 'outlineDark':
         return css`
-          background-color: transparent;
-          color: ${theme.colors.primary};
-          border: 3px solid ${theme.colors.primary};
-          font-weight: ${theme.fontWeights.bold};
-          letter-spacing: 0.5px;
-          
+          background: transparent;
+          border: 1px solid #2d3748;
+          color: #2d3748;
           &:hover {
-            background-color: rgba(170, 95, 55, 0.1);
-            box-shadow: 0 0 10px rgba(170, 95, 55, 0.2);
-          }
-          
-          &:active {
-            background-color: rgba(170, 95, 55, 0.2);
+            background-color: rgba(45, 55, 72, 0.1);
           }
         `;
       case 'text':
         return css`
-          background-color: transparent;
-          color: ${theme.colors.primary};
-          border: none;
-          padding-left: ${theme.spacing.sm};
-          padding-right: ${theme.spacing.sm};
-          
+          background: transparent;
+          color: ${primaryColor};
+          padding: 0;
+          text-decoration: underline;
           &:hover {
-            background-color: ${theme.colors.ui.hover};
-          }
-          
-          &:active {
-            color: ${theme.colors.secondary};
+            opacity: 0.8;
           }
         `;
-      case 'primary':
       default:
         return css`
-          background-color: ${theme.colors.primary};
-          color: ${theme.colors.text.light};
+          background-color: ${primaryColor};
+          color: white;
           border: none;
           
           &:hover {
@@ -143,23 +115,28 @@ const ButtonStyles = styled.button<ButtonProps>`
   }
 `;
 
-const Button: React.FC<ButtonProps> = ({ 
-  children, 
-  variant = 'primary', 
-  size = 'md', 
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
+  children,
+  variant = 'primary',
+  size = 'md',
   fullWidth = false,
-  ...props 
-}) => {
+  as: Component = 'button',
+  ...props
+}, ref) => {
   return (
-    <ButtonStyles
+    <StyledButton
+      as={Component}
       variant={variant}
       size={size}
       fullWidth={fullWidth}
+      ref={ref}
       {...props}
     >
       {children}
-    </ButtonStyles>
+    </StyledButton>
   );
-};
+});
+
+Button.displayName = 'Button';
 
 export default Button;

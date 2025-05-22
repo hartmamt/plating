@@ -8,11 +8,14 @@ import Button from './components/Button';
 
 const HeroSection = styled.section`
   position: relative;
-  background-color: ${({ theme }) => theme.colors.tertiary};
-  padding: ${({ theme }) => theme.spacing['3xl']} 0;
-  text-align: center;
-  min-height: 480px;
+  height: 100vh;
+  min-height: 600px;
+  max-height: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
 `;
 
 const VideoBackground = styled.div`
@@ -56,25 +59,41 @@ const ResponsiveIframe = styled.iframe`
 const HeroContent = styled.div`
   position: relative;
   z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 480px;
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: left;
+  color: white;
+  
+  @media (max-width: 768px) {
+    text-align: center;
+    padding: 1rem;
+  }
 `;
 
 const HeroHeadline = styled.h1`
-  color: #fff;
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 2.5rem;
-  text-shadow: 0 2px 16px rgba(0,0,0,0.25);
-  letter-spacing: 0.02em;
-  @media (max-width: 600px) {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    padding: 0 0.5rem;
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 1.5rem 0;
+  background: linear-gradient(90deg, #fff 0%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  max-width: 800px;
+  
+  @media (max-width: 1024px) {
+    font-size: 2.8rem;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+    text-align: center;
+    margin: 0 auto 1.5rem auto;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.8rem;
   }
 `;
 
@@ -123,7 +142,20 @@ const ButtonGroup = styled.div`
 `;
 
 const FeaturesSection = styled.section`
-  padding: ${({ theme }) => theme.spacing['3xl']} 0;
+  padding: 6rem 0;
+  background: #f8f9fa;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
+    pointer-events: none;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -133,63 +165,149 @@ const SectionTitle = styled.h2`
 
 const FeatureGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: ${({ theme }) => theme.spacing.xl};
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
   
-  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    padding: 0 1.5rem;
   }
 `;
 
 const FeatureCard = styled.div`
-  background-color: ${({ theme }) => theme.colors.ui.card};
-  border-radius: ${({ theme }) => theme.borderRadius.lg};
-  padding: ${({ theme }) => theme.spacing.xl};
-  box-shadow: ${({ theme }) => theme.shadows.sm};
-  transition: ${({ theme }) => theme.transitions.normal};
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.05);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #b77a3a 0%, #8f4f2d 100%);
+    transition: width 0.3s ease;
+  }
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: ${({ theme }) => theme.shadows.md};
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    
+    &::before {
+      width: 8px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
   }
 `;
 
 const FeatureTitle = styled.h3`
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-  color: ${({ theme }) => theme.colors.text.primary};
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #1a1a1a;
+  position: relative;
+  padding-left: 1.5rem;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 8px;
+    height: 8px;
+    background: #b77a3a;
+    border-radius: 50%;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const FeatureDescription = styled.p`
-  color: ${({ theme }) => theme.colors.text.secondary};
-  margin-bottom: 0;
+  color: #666;
+  line-height: 1.7;
+  margin: 0;
+  font-size: 1.05rem;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const CTASection = styled.section`
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.text.light};
-  padding: ${({ theme }) => theme.spacing['3xl']} 0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: white;
+  padding: 6rem 2rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  }
 `;
 
 const CTATitle = styled.h2`
-  color: ${({ theme }) => theme.colors.text.light};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem 0;
+  color: white;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #b77a3a;
+    border-radius: 2px;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const CTADescription = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: 1.2rem;
   max-width: 700px;
-  margin: 0 auto ${({ theme }) => theme.spacing.xl};
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
+  
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const Footer = styled.footer`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  color: ${({ theme }) => theme.colors.text.light};
-  padding: ${({ theme }) => theme.spacing['2xl']} 0;
+  background: #0a0a0a;
+  color: #999;
+  padding: 4rem 0 2rem;
+  font-size: 0.95rem;
 `;
 
 const FooterContent = styled.div`
@@ -341,39 +459,50 @@ export default function Home() {
             />
           </VideoBackground>
           <HeroContent>
-            <Container>
-              <HeroHeadline>Your Partner in Precision Electroplating & Surface Finishing</HeroHeadline>
-              <MobileHeroButton href="/contact">GET A QUOTE TODAY!</MobileHeroButton>
-            </Container>
+            <HeroHeadline>
+              Your Partner in Precision Electroplating & Surface Finishing
+            </HeroHeadline>
+            <MobileHeroButton href="/contact">GET A QUOTE TODAY</MobileHeroButton>
           </HeroContent>
         </HeroSection>
+
         <FeaturesSection>
-  <Container>
-    <SectionTitle>About Us</SectionTitle>
-    <FeatureGrid>
-      <FeatureCard>
-        <FeatureTitle>Comprehensive Electroplating</FeatureTitle>
-        <FeatureDescription>
-          We specialize in high-quality electroplating services tailored to modern manufacturing. Our offerings include silver, tin, and zinc electroplating, plus specialized surface treatments for enhanced performance, conductivity, corrosion resistance, and durability.
-        </FeatureDescription>
-      </FeatureCard>
-      <FeatureCard>
-        <FeatureTitle>Industry-Spanning Expertise</FeatureTitle>
-        <FeatureDescription>
-          Serving industries from aerospace to electronics, our team brings decades of experience. We deliver both high-volume production and custom plating solutions—always with precision, reliability, and a focus on customer satisfaction.
-        </FeatureDescription>
-      </FeatureCard>
-      <FeatureCard>
-        <FeatureTitle>Quality & Commitment</FeatureTitle>
-        <FeatureDescription>
-          Trust your components to the experts at Plating Solutions—where quality comes standard and every project is delivered on-spec, every time.
-        </FeatureDescription>
-      </FeatureCard>
-    </FeatureGrid>
-  </Container>
-</FeaturesSection>
+          <FeatureGrid>
+            <FeatureCard>
+              <FeatureTitle>Comprehensive Electroplating</FeatureTitle>
+              <FeatureDescription>
+                We specialize in high-quality electroplating services tailored to modern manufacturing. Our offerings include silver, tin, and zinc electroplating, plus specialized surface treatments for enhanced performance, conductivity, corrosion resistance, and durability.
+              </FeatureDescription>
+            </FeatureCard>
+            <FeatureCard>
+              <FeatureTitle>Industry-Spanning Expertise</FeatureTitle>
+              <FeatureDescription>
+                Serving industries from aerospace to electronics, our team brings decades of experience. We deliver both high-volume production and custom plating solutions—always with precision, reliability, and a focus on customer satisfaction.
+              </FeatureDescription>
+            </FeatureCard>
+            <FeatureCard>
+              <FeatureTitle>Quality & Commitment</FeatureTitle>
+              <FeatureDescription>
+                Trust your components to the experts at Plating Solutions—where quality comes standard and every project is delivered on-spec, every time.
+              </FeatureDescription>
+            </FeatureCard>
+          </FeatureGrid>
+        </FeaturesSection>
+
+        <CTASection>
+          <CTATitle>Ready to Get Started?</CTATitle>
+          <CTADescription>
+            Contact us today to discuss your project requirements and discover how our expert electroplating solutions can meet your needs.
+          </CTADescription>
+          <ButtonGroup>
+            <Link href="/contact" passHref legacyBehavior>
+              <Button as="a" variant="primary">Contact Us</Button>
+            </Link>
+          </ButtonGroup>
+        </CTASection>
       </main>
-      <EmploymentChatBubble />
+
+
       <Footer>
         <Container>
           <FooterContent>
@@ -385,7 +514,7 @@ export default function Home() {
             </FooterColumn>
           </FooterContent>
           <Copyright>
-            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+            &copy; {new Date().getFullYear()} Plating Solutions. All rights reserved.
           </Copyright>
         </Container>
       </Footer>
