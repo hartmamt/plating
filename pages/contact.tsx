@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Header from './components/Header';
 import Container from './components/Container';
 import Link from 'next/link';
+import FooterComponent from './components/Footer';
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -440,24 +441,18 @@ export default function Contact() {
               
               <ContactCards>
                 <ContactCard>
-                  <CardTitle><PhoneIcon /> Phone</CardTitle>
-                  <CardText>Main Office: (123) 456-7890</CardText>
-                  <CardText>Sales Department: (123) 456-7891</CardText>
-                  <CardText>Support: (123) 456-7892</CardText>
-                </ContactCard>
-                
-                <ContactCard>
-                  <CardTitle><EmailIcon /> Email</CardTitle>
-                  <CardText>General Inquiries: info@yourcompany.com</CardText>
-                  <CardText>Sales: sales@yourcompany.com</CardText>
-                  <CardText>Support: support@yourcompany.com</CardText>
-                </ContactCard>
-                
-                <ContactCard>
                   <CardTitle><LocationIcon /> Address</CardTitle>
-                  <CardText>123 Manufacturing Way</CardText>
-                  <CardText>Industrial Park, Suite 500</CardText>
-                  <CardText>Anytown, ST 12345</CardText>
+                  <CardText>871 Redna Terrace</CardText>
+                  <CardText>Cincinnati, Ohio 45215</CardText>
+                  <CardText>Phone: (513) 771-1941</CardText>
+                  <CardText><a href="http://www.platingsolutionsllc.com" target="_blank" rel="noopener noreferrer" style={{color: '#B16034'}}>www.platingsolutionsllc.com</a></CardText>
+                </ContactCard>
+                
+                <ContactCard>
+                  <CardTitle><EmailIcon /> Contact</CardTitle>
+                  <CardText>Joe Tekuelve</CardText>
+                  <CardText>Phone: (513) 377-1661</CardText>
+                  <CardText>Email: <a href="mailto:Joe.Tekuelve@monti-inc.com" style={{color: '#B16034'}}>Joe.Tekuelve@monti-inc.com</a></CardText>
                 </ContactCard>
                 
                 <ContactCard>
@@ -474,29 +469,15 @@ export default function Contact() {
       
       <MapSection>
         <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215175847356!2d-73.98784492439176!3d40.75798597138946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9aeb1c6b5%3A0x35b1cfbc89a6097f!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1683651913301!5m2!1sen!2sus" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3088.123456789012!2d-84.56789!3d39.12345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8841a8a7d1a2b2c3%3A0x4dca0b1c41e33a5d!2s871%20Redna%20Terrace%2C%20Cincinnati%2C%20OH%2045215!5e0!3m2!1sen!2sus!4v1623456789012!5m2!1sen!2sus" 
           allowFullScreen 
           loading="lazy" 
           referrerPolicy="no-referrer-when-downgrade"
-          title="Company Location"
+          title="Plating Solutions Location"
         />
       </MapSection>
       
-      <Footer>
-        <Container>
-          <FooterContent>
-            <FooterColumn>
-              <FooterTitle>Navigation</FooterTitle>
-              <FooterLink href="/">Home</FooterLink>
-              <FooterLink href="/services">Services</FooterLink>
-              <FooterLink href="/contact">Contact</FooterLink>
-            </FooterColumn>
-          </FooterContent>
-          <Copyright>
-            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
-          </Copyright>
-        </Container>
-      </Footer>
+      <FooterComponent />
     </PageWrapper>
     </>
   );

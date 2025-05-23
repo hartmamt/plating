@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Header from './components/Header';
 import Container from './components/Container';
 import Link from 'next/link';
+import FooterComponent from './components/Footer';
 
 const PageWrapper = styled.div`
   min-height: 100vh;
@@ -514,21 +515,7 @@ export default function Services() {
           </Container>
         </CTASection>
         
-        <Footer>
-          <Container>
-            <FooterContent>
-              <FooterColumn>
-                <FooterTitle>Navigation</FooterTitle>
-                <FooterLink href="/">Home</FooterLink>
-                <FooterLink href="/services">Services</FooterLink>
-                <FooterLink href="/contact">Contact</FooterLink>
-              </FooterColumn>
-            </FooterContent>
-            <Copyright>
-              &copy; {new Date().getFullYear()} Plating Solutions. All rights reserved.
-            </Copyright>
-          </Container>
-        </Footer>
+        <FooterComponent />
       </PageWrapper>
     </>
   );

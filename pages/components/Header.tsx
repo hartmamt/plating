@@ -62,12 +62,12 @@ const Logo = styled.a`
     color: ${({ theme }) => theme.colors.text.light};
   }
   img {
-    max-width: 220px;
+    max-width: 300px; /* Increased from 250px */
     width: auto;
-    height: 48px;
+    height: 65px; /* Increased from 54px */
     @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-      max-width: 160px;
-      height: 40px;
+      max-width: 220px; /* Increased from 180px */
+      height: 55px; /* Increased from 45px */
     }
   }
 `;
@@ -192,19 +192,9 @@ const Header: React.FC = () => {
     <>
       <TopBar>
         <TopBarContent>
-          <SocialIcons>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style={{color: 'white', fontSize: 20}}>
-              {/* LinkedIn Emoji or SVG */}
-              <span role="img" aria-label="LinkedIn">🔗</span>
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{color: 'white', fontSize: 20}}>
-              {/* Facebook Emoji or SVG */}
-              <span role="img" aria-label="Facebook">📘</span>
-            </a>
-          </SocialIcons>
-          <div style={{display: 'flex', gap: '20px', alignItems: 'center'}}>
-            <ContactLink href="tel:+15137617775">
-              <span>+513 761 7775</span>
+          <div style={{display: 'flex', gap: '20px', alignItems: 'center', marginLeft: 'auto'}}>
+            <ContactLink href="tel:+15137711941">
+              <span>+513 771 1941</span>
             </ContactLink>
             <ContactLink href="mailto:sales@monti-inc.com">
               <span>SALES@MONTI-INC.COM</span>

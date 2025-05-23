@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Header from './components/Header';
 import Container from './components/Container';
 import Button from './components/Button';
+import FooterComponent from './components/Footer';
 
 const HeroSection = styled.section`
   position: relative;
@@ -308,46 +309,24 @@ const Footer = styled.footer`
   color: #999;
   padding: 4rem 0 2rem;
   font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
 `;
 
 const FooterContent = styled.div`
   display: flex;
   justify-content: space-between;
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    flex-direction: column;
-    gap: ${({ theme }) => theme.spacing.xl};
-  }
+  align-items: center;
+  flex: 1;
 `;
 
 const FooterColumn = styled.div`
   flex: 1;
 `;
 
-const FooterTitle = styled.h3`
-  color: ${({ theme }) => theme.colors.text.light};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-`;
 
-const FooterLink = styled.a`
-  color: ${({ theme }) => theme.colors.text.light};
-  opacity: 0.8;
-  display: block;
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
-  
-  &:hover {
-    opacity: 1;
-    color: ${({ theme }) => theme.colors.text.light};
-  }
-`;
-
-const Copyright = styled.div`
-  text-align: center;
-  margin-top: ${({ theme }) => theme.spacing['2xl']};
-  padding-top: ${({ theme }) => theme.spacing.lg};
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  opacity: 0.6;
-`;
 
 // Minimal CSS for navigation buttons
 const buttonStyles = `
@@ -503,21 +482,7 @@ export default function Home() {
       </main>
 
 
-      <Footer>
-        <Container>
-          <FooterContent>
-            <FooterColumn>
-              <FooterTitle>Navigation</FooterTitle>
-              <FooterLink href="/">Home</FooterLink>
-              <FooterLink href="/services">Services</FooterLink>
-              <FooterLink href="/contact">Contact</FooterLink>
-            </FooterColumn>
-          </FooterContent>
-          <Copyright>
-            &copy; {new Date().getFullYear()} Plating Solutions. All rights reserved.
-          </Copyright>
-        </Container>
-      </Footer>
+      <FooterComponent />
     </>
   );
 }
