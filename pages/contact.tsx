@@ -301,6 +301,8 @@ export default function Contact() {
     subject: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{success?: boolean; message: string} | null>(null);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -308,13 +310,56 @@ export default function Contact() {
       ...prev,
       [name]: value
     }));
+    // Clear any previous submission status when user starts typing again
+    if (submitStatus) setSubmitStatus(null);
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would handle form submission here
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        setSubmitStatus({
+          success: true,
+          message: 'Thank you for your message! We will get back to you soon.'
+        });
+        // Reset form on successful submission
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          company: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        setSubmitStatus({
+          success: false,
+          message: data.message || 'Something went wrong. Please try again.'
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus({
+        success: false,
+        message: 'Failed to send message. Please try again later.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   return (
@@ -426,10 +471,55 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  rows={5}
                 />
               </FormGroup>
               
-              <button type="submit" className="button primary" style={{marginTop: '1rem'}}>Send Message</button>
+              {submitStatus && (
+                <div style={{
+                  margin: '1rem 0',
+                  padding: '1rem',
+                  borderRadius: '4px',
+                  backgroundColor: submitStatus.success ? '#e6f7ee' : '#fde8e8',
+                  color: submitStatus.success ? '#0f5132' : '#842029',
+                  border: `1px solid ${submitStatus.success ? '#badbcc' : '#f5c2c7'}`
+                }}>
+                  {submitStatus.message}
+                  {submitStatus.success && (
+                    <div style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>
+                      You can also reach us directly at <a href="mailto:Joe.Tekuelve@monti-inc.com" style={{ color: '#B16034' }}>Joe.Tekuelve@monti-inc.com</a>
+                    </div>
+                  )}
+                </div>
+              )}
+              
+              <button 
+                type="submit" 
+                className="button primary" 
+                style={{
+                  marginTop: '1rem',
+                  backgroundColor: isSubmitting ? '#ccc' : '#B16034',
+                  cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem'
+                }}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <span>Sending...</span>
+                    <div style={{ width: '1rem', height: '1rem', border: '2px solid #fff', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+                    <style jsx>{`
+                      @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                      }
+                    `}</style>
+                  </>
+                ) : 'Send Message'}
+              </button>
             </ContactForm>
             
             <ContactInfo>

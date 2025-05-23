@@ -326,7 +326,7 @@ export default function Services() {
             <ServicesList>
               <ServiceCard id="silver">
                 <ServiceImage>
-                  <img src="/silver-plating.png" alt="Silver Electroplating" />
+                  <img src="/silver.png" alt="Silver Electroplating" />
                 </ServiceImage>
                 <ServiceContent>
                   <ServiceTitle>Silver Electroplating</ServiceTitle>
@@ -364,7 +364,7 @@ export default function Services() {
               
               <ServiceCard id="tin">
                 <ServiceImage>
-                  <img src="/tin-plating.png" alt="Tin Electroplating" />
+                  <img src="/tin.png" alt="Tin Electroplating" />
                 </ServiceImage>
                 <ServiceContent>
                   <ServiceTitle>Tin Electroplating</ServiceTitle>
@@ -401,7 +401,7 @@ export default function Services() {
               
               <ServiceCard id="zinc">
                 <ServiceImage>
-                  <img src="/zinc-plating.png" alt="Zinc Electroplating" />
+                  <img src="/zinc.png" alt="Zinc Electroplating" />
                 </ServiceImage>
                 <ServiceContent>
                   <ServiceTitle>Zinc Electroplating</ServiceTitle>
@@ -455,10 +455,10 @@ export default function Services() {
                 <SectionText>
                   Our state-of-the-art facility features the latest equipment and rigorous process controls to ensure consistent results that meet or exceed industry standards. From prototype to production, we're your partner in precision electroplating.
                 </SectionText>
-                <a className="button primary" style={{ marginTop: '1rem' }} href="/contact">Contact Us</a>
+                {/* <a className="button primary" style={{ marginTop: '1rem' }} href="/contact">Contact Us</a> */}
               </FeaturedServiceContent>
               <FeaturedServiceImage>
-                <img src="/plating-facility.jpg" alt="Advanced Electroplating Facility" />
+                <img src="/facility.png" alt="Advanced Electroplating Facility" />
               </FeaturedServiceImage>
             </FeaturedServiceGrid>
           </Container>

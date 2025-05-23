@@ -31,7 +31,37 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          {/* Favicon for all devices */}
+          <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+          
+          {/* Apple Touch Icons */}
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+          
+          {/* Android/Chrome */}
+          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          
+          {/* Microsoft Tiles */}
+          <meta name="msapplication-TileColor" content="#B16034" />
+          <meta name="msapplication-config" content="/browserconfig.xml" />
+          
+          {/* Theme and description */}
+          <meta name="theme-color" content="#B16034" />
+          <meta name="description" content="Plating Solutions - Professional metal finishing and electroplating services" />
+          
+          {/* Open Graph / Facebook */}
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Plating Solutions" />
+          <meta property="og:image" content="/logo-og.png" />
+          
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:image" content="/logo-og.png" />
+          
+          {/* PWA related */}
+          <link rel="manifest" href="/site.webmanifest" />
+        </Head>
         <body>
           <Main />
           <NextScript />

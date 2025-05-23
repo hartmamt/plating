@@ -3,6 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyle';
 import theme from '../styles/theme';
 import Head from 'next/head';
+import { useEffect } from 'react';
+import { load } from '@vercel/edge';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
