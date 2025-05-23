@@ -326,7 +326,7 @@ export default function Services() {
             <ServicesList>
               <ServiceCard id="silver">
                 <ServiceImage>
-                  <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="Silver Electroplating" />
+                  <img src="/silver-plating.png" alt="Silver Electroplating" />
                 </ServiceImage>
                 <ServiceContent>
                   <ServiceTitle>Silver Electroplating</ServiceTitle>
@@ -364,7 +364,7 @@ export default function Services() {
               
               <ServiceCard id="tin">
                 <ServiceImage>
-                  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Tin Electroplating" />
+                  <img src="/tin-plating.png" alt="Tin Electroplating" />
                 </ServiceImage>
                 <ServiceContent>
                   <ServiceTitle>Tin Electroplating</ServiceTitle>
@@ -401,7 +401,7 @@ export default function Services() {
               
               <ServiceCard id="zinc">
                 <ServiceImage>
-                  <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" alt="Zinc Electroplating" />
+                  <img src="/zinc-plating.png" alt="Zinc Electroplating" />
                 </ServiceImage>
                 <ServiceContent>
                   <ServiceTitle>Zinc Electroplating</ServiceTitle>
@@ -458,7 +458,7 @@ export default function Services() {
                 <a className="button primary" style={{ marginTop: '1rem' }} href="/contact">Contact Us</a>
               </FeaturedServiceContent>
               <FeaturedServiceImage>
-                <img src="https://images.unsplash.com/photo-1468421870903-4df1664ac249?auto=format&fit=crop&w=800&q=80" alt="Advanced Electroplating Facility" />
+                <img src="/plating-facility.jpg" alt="Advanced Electroplating Facility" />
               </FeaturedServiceImage>
             </FeaturedServiceGrid>
           </Container>
